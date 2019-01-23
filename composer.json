@@ -25,5 +25,11 @@
             "ascio\\v3": "src/v3/service",
             "ascio\\v2": "src/v2/service"
         }
+    },
+    "autoload-dev": {
+        "psr-0": {
+            "ascio\\v3": "src/v3/service",
+            "ascio\\v2": "src/v2/service"
+        }
     }
 }
