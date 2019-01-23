@@ -1,0 +1,22 @@
+{
+    "name": "ascio/ascio-classes",
+    "description": "PHP Classes for the Ascio-API",
+    "authors": [
+        {
+            "name": "Manuel Lautenschlager",
+            "email": "manuel.lautenschlager@ascio.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=5.3.0",
+        "ext-soap": "*"
+    },
+    "autoload": {
+        "psr-0": {
+            "ascio\\v3": "src/v3/service",
+            "ascio\\v2": "src/v2/service",
+            "wsdl2phpgenerator/wsdl2phpgenerator" : "*"
+        }
+    }
+}
