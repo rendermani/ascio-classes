@@ -32,7 +32,7 @@
             "ascio\\v3": "src/v3/service",
             "ascio\\v2": "src/v2/service",
             "ascio\\dns": "src/dns/service",
-            "ascio" : "src/lib"
+            "ascio\\lib" : "src/lib"
         }
     }
 }
