@@ -3,34 +3,34 @@
         "v2" : {
             "account" : "",
             "password" : "",
-            "wsdl" : ""
+             "wsdl" : "https://aws.ascio.com/2012/01/01/AscioService.wsdl"
         },
         "v3" : {
             "account" : "",
             "password" : "",
-            "wsdl" : ""
+            "wsdl" : "https://aws.ascio.com/v3/aws.wsdl"
         },
         "dns" : {
             "account" : "",
             "password" : "",
-            "wsdl" : ""
+            "wsdl" : "https://dnsservice.ascio.com/2010/10/30/DnsService.wsdl"
         }
     },
     "testing" : {
         "v2" : {
             "account" : "",
             "password" : "",
-            "wsdl" : ""
+            "wsdl" : "https://aws.demo.ascio.com/2012/01/01/AscioService.wsdl"
         },
         "v3" : {
             "account" : "",
             "password" : "",
-            "wsdl" : ""
+            "wsdl" : "https://aws.demo.ascio.com/v3/aws.wsdl"
         },
         "dns" : {
             "account" : "",
             "password" : "",
-            "wsdl" : ""
+            "wsdl" : "https://dnsservice.demo.ascio.com/2010/10/30/DnsService.wsdl"
         }
     }
 }
