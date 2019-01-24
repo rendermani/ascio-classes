@@ -22,18 +22,18 @@
     },
     "autoload": {
         "psr-4": {
-            "ascio\\v3": "src/v3/service",
-            "ascio\\v2": "src/v2/service",
-            "ascio\\dns": "src/dns/service",
-            "ascio\\lib" : "src/lib"
+            "ascio\\v3\\": "src/v3/service",
+            "ascio\\v2\\": "src/v2/service",
+            "ascio\\dns\\": "src/dns/service",
+            "ascio\\lib\\" : "src/lib"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "ascio\\v3": "src/v3/service",
-            "ascio\\v2": "src/v2/service",
-            "ascio\\dns": "src/dns/service",
-            "ascio\\lib" : "src/lib"
+            "ascio\\v3\\": "src/v3/service",
+            "ascio\\v2\\": "src/v2/service",
+            "ascio\\dns\\": "src/dns/service",
+            "ascio\\lib\\" : "src/lib"
         }
     }
 }
