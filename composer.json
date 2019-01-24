@@ -21,7 +21,7 @@
 
     },
     "autoload": {
-        "psr-0": {
+        "psr-4": {
             "ascio\\v3": "src/v3/service",
             "ascio\\v2": "src/v2/service",
             "ascio\\dns": "src/dns/service",
@@ -29,7 +29,7 @@
         }
     },
     "autoload-dev": {
-        "psr-0": {
+        "psr-4": {
             "ascio\\v3": "src/v3/service",
             "ascio\\v2": "src/v2/service",
             "ascio\\dns": "src/dns/service",
