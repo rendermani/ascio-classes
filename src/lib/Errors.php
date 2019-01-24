@@ -1,5 +1,5 @@
 <?php 
-namespace ascio; 
+namespace ascio\lib; 
 
 class AscioException extends \Exception {
     public $values;

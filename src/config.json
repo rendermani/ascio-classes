@@ -1,0 +1,36 @@
+{
+    "live" : {
+        "v2" : {
+            "account" : "",
+            "password" : "",
+            "wsdl" : ""
+        },
+        "v3" : {
+            "account" : "",
+            "password" : "",
+            "wsdl" : ""
+        },
+        "dns" : {
+            "account" : "",
+            "password" : "",
+            "wsdl" : ""
+        }
+    },
+    "testing" : {
+        "v2" : {
+            "account" : "",
+            "password" : "",
+            "wsdl" : ""
+        },
+        "v3" : {
+            "account" : "",
+            "password" : "",
+            "wsdl" : ""
+        },
+        "dns" : {
+            "account" : "",
+            "password" : "",
+            "wsdl" : ""
+        }
+    }
+}
