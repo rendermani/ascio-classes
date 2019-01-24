@@ -60,7 +60,7 @@ Classes to connect to the Ascio API. Please see https://aws.ascio.info for detai
     }
 }
 ```
-Please enter your ascio credentials. In most cases it's the same account for all API-Versions (v2,v3,dns). Live-account and testing-account have different credentials. Please don't forget to configure the **ip-whitelisting** in https://portal.ascio.com or https://portal.demo.ascio.com.
+Please enter your ascio credentials. In most cases it's the same account for all API-Versions (v2,v3,dns). Live-account and testing-account have different credentials. Please don't forget to configure the **ip-whitelisting** in https://portal.ascio.com and https://portal.demo.ascio.com.
 
 ## Run composer
 
