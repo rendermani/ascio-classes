@@ -1,7 +1,7 @@
 # ascio-classes
 Classes to connect to the Ascio API. Please see https://aws.ascio.info for details. 
 
-# usage
+# Usage
 
 ## Create a composer.json file in the root of your project
 
@@ -62,7 +62,7 @@ Classes to connect to the Ascio API. Please see https://aws.ascio.info for detai
 ```
 Please enter your ascio credentials. 
 
-## run composer
+## Run composer
 
 Please look at https://getcomposer.org/ for composer installation-instructions. 
 
@@ -70,7 +70,7 @@ Please look at https://getcomposer.org/ for composer installation-instructions.
 composer install
 ```
 
-## run an example
+## Run an example
 
 ```php
 <?php
@@ -84,16 +84,13 @@ use ascio\lib\AscioException;
 use ascio\v2\PollMessage;
 use ascio\v2\MessageType;
 
-/**
- * Please place the config.json in the root of your project and edit it.
- */
-
 $client = lib\Ascio::getClientV2("testing");
 $pollMessage = new PollMessage(0,MessageType::Message_to_Partner);
 try {   
     $result = $client->PollMessage($pollMessage);
     var_dump($result->getMsgCount());
 } catch (AscioException $e) {
+    echo $e->debug();
     echo $e->debugSoap();
 }
 ```
