@@ -130,7 +130,7 @@ class V2ServiceExt extends V2Service {
             return $this->__soapCall($function_name, $arguments, $options, $input_headers, $output_headers);
         } else  {
             $exception = new AscioException($status->getMessage(),$status->getResultCode());
-            $exception->setResult($function_name,$arguments,$status->Values);
+            $exception->setResult($function_name,$arguments,$status->getValues());
             $exception->setSoap($this->__getLastRequest(),$this->__getLastResponse());
             throw $exception;
         }
