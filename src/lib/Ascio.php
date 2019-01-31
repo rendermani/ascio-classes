@@ -1,37 +1,53 @@
 <?php
 namespace ascio\lib;
 require_once(__DIR__."/Errors.php");
+
 use ascio\v2 as v2;
 use ascio\v3\AscioService as V3Service;
 use ascio\v2\AscioServices as V2Service; 
 use ascio\dns\DnsService as DnsService;
 use ascio\v2\Session;
 
+
+class AscioEnvironment {
+    const Live = "live";
+    const Testing = "testing";
+}
+
 class Ascio {
-    public static function getConfig () {
+    public static function setConfigFile($filePath=null) {
         global $_ascioConfig; 
-        $file = file_get_contents(__DIR__."/../../../../../config.json"); 
+        if(!$filePath) $filePath = __DIR__."/../../../../../config.json";
+        $file = file_get_contents($filePath); 
         $_ascioConfig = json_decode($file);                
     }
+    public static function getConfig() {
+        global $_ascioConfig, $_ascioConfigEnv;
+        if(!$_ascioConfig) {
+            Ascio::setConfigFile();
+        }
+        assert(
+            $_ascioConfigEnv==AscioEnvironment::Testing || $_ascioConfigEnv==AscioEnvironment::Live,
+            new \Exception('Please setEnvironment(): Ascio::setEnvironment(AscioEnvironment:Testing)'));
+        return $_ascioConfig->$_ascioConfigEnv;
+    }
     /**
-     * @return V2ServiceExt
+     * @param AscioEnvironment $environment AscioEnvironment::Live (live) or AscioEnvironment ::Testing (testing)
      */
-    public static function getClientV2($environment) : V2ServiceExt {
-        global $_ascioConfig; 
-        if(!$_ascioConfig) Ascio::getConfig();
-        $client = new V2Client($_ascioConfig->$environment->v2);
+    public static function setEnvironment($environment) {
+        global $_ascioConfigEnv; 
+        $_ascioConfigEnv = $environment;
+    }
+    public static function getClientV2() : V2ServiceExt {
+        $client = new V2Client(Ascio::getConfig()->v2);
         return $client->getClient();
     }
-    public static function getClientV3($environment) : V3Service  {
-        global $_ascioConfig; 
-        if(!$_ascioConfig) Ascio::getConfig();
-        $client = new V3Client($_ascioConfig->$environment->v3);
+    public static function getClientV3() : V3Service  {
+        $client = new V3Client(Ascio::getConfig()->v3);
         return $client->getClient();
     }
-    public  static function getClientDns($environment) : DnsService {
-        global $_ascioConfig; 
-        if(!$_ascioConfig) Ascio::getConfig();
-        $client = new DnsClient($_ascioConfig->$environment->dns);
+    public  static function getClientDns() : DnsService {
+        $client = new DnsClientAscio(Ascio::getConfig()->dns);
         return $client->getClient();
     }
 }
@@ -50,7 +66,14 @@ class V2Client  extends Client{
     public function getClient() : V2Service {
         global $_ascioV2Service;
         if($_ascioV2Service) return $_ascioV2Service;
-        $service = new V2ServiceExt(["trace" => true],$this->wsdl);
+        $options = [
+            "trace" => true,
+            "classmap" => [
+                'Domain' => 'ascio\\lib\\v2\\Domain',          
+                'Order' => 'ascio\\lib\\v2\\Order'            
+            ]
+        ];
+        $service = new V2ServiceExt($options,$this->wsdl);
         $service->setCredentials($this->account,$this->password);
         return $service;
     }    
@@ -101,7 +124,6 @@ class V2ServiceExt extends V2Service {
     protected $account;
     protected $password; 
     protected $sessionId; 
-
     public function setCredentials($account,$password) {
         $this->account = $account;
         $this->password = $password;
