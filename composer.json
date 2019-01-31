@@ -11,13 +11,15 @@
     "require": {
         "php": ">=5.3.0",
         "ext-soap": "*", 
-        "wsdl2phpgenerator/wsdl2phpgenerator" : "*"
+        "wsdl2phpgenerator/wsdl2phpgenerator" : "*",
+        "ext-pdo" : "*"
 
     },
     "require-dev": {
         "php": ">=5.3.0",
         "ext-soap": "*", 
-        "wsdl2phpgenerator/wsdl2phpgenerator" : "*"
+        "wsdl2phpgenerator/wsdl2phpgenerator" : "*",
+        "ext-pdo" : "*"
 
     },
     "autoload": {
@@ -25,7 +27,9 @@
             "ascio\\v3\\": "src/v3/service",
             "ascio\\v2\\": "src/v2/service",
             "ascio\\dns\\": "src/dns/service",
-            "ascio\\lib\\" : "src/lib"
+            "ascio\\lib\\v2\\" : "src/lib/v2",
+            "ascio\\lib\\v3\\" : "src/lib/v3"
+            
         }
     },
     "autoload-dev": {
@@ -33,7 +37,9 @@
             "ascio\\v3\\": "src/v3/service",
             "ascio\\v2\\": "src/v2/service",
             "ascio\\dns\\": "src/dns/service",
-            "ascio\\lib\\" : "src/lib"
+            "ascio\\lib\\" : "src/lib",
+            "ascio\\lib\\v2\\" : "src/lib/v2",
+            "ascio\\lib\\v3\\" : "src/lib/v3"
         }
     }
 }
