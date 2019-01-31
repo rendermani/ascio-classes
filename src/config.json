@@ -1,5 +1,13 @@
 {
+   
     "live" : {
+        "debug" : "true",
+        "log"   : "true", 
+        "db"    : {
+            "dsn"       : "mysql:host=localhost;dbname=ascio",
+            "user"      : "user",
+            "password"  : "password"
+        },
         "v2" : {
             "account" : "",
             "password" : "",
@@ -15,8 +23,16 @@
             "password" : "",
             "wsdl" : "https://dnsservice.ascio.com/2010/10/30/DnsService.wsdl"
         }
+        
     },
     "testing" : {
+        "debug" : "true",
+        "log"   : "true", 
+        "db"    : {
+            "dsn"       : "mysql:host=localhost;dbname=ascio",
+            "user"      : "user",
+            "password"  : "password"
+        },
         "v2" : {
             "account" : "",
             "password" : "",
