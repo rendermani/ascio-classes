@@ -50,14 +50,10 @@ class AutoInstallSslInfo
      */
     protected $ObjectComment = null;
 
-    /**
-     * @param \DateTime $Created
-     * @param int $SanCount
-     */
-    public function __construct(\DateTime $Created, $SanCount)
+    
+    public function __construct()
     {
-      $this->Created = $Created->format(\DateTime::ATOM);
-      $this->SanCount = $SanCount;
+    
     }
 
     /**
@@ -116,9 +112,13 @@ class AutoInstallSslInfo
      * @param \DateTime $Created
      * @return \ascio\v3\AutoInstallSslInfo
      */
-    public function setCreated(\DateTime $Created)
+    public function setCreated(\DateTime $Created = null)
     {
-      $this->Created = $Created->format(\DateTime::ATOM);
+      if ($Created == null) {
+       $this->Created = null;
+      } else {
+        $this->Created = $Created->format(\DateTime::ATOM);
+      }
       return $this;
     }
 

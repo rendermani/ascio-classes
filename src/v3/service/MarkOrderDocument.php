@@ -10,13 +10,10 @@ class MarkOrderDocument extends Attachment
      */
     protected $DocType = null;
 
-    /**
-     * @param MarkOrderDocType $DocType
-     */
-    public function __construct($DocType)
+    
+    public function __construct()
     {
       parent::__construct();
-      $this->DocType = $DocType;
     }
 
     /**

@@ -10,12 +10,10 @@ class NameWatchOrderRequest extends AbstractOrderRequest
      */
     protected $NameWatch = null;
 
-    /**
-     * @param OrderType $Type
-     */
-    public function __construct($Type)
+    
+    public function __construct()
     {
-      parent::__construct($Type);
+      parent::__construct();
     }
 
     /**

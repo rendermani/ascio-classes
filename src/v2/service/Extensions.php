@@ -10,12 +10,10 @@ class Extensions
      */
     protected $Extension = null;
 
-    /**
-     * @param Extension[] $Extension
-     */
-    public function __construct(array $Extension)
+    
+    public function __construct()
     {
-      $this->Extension = $Extension;
+    
     }
 
     /**
@@ -30,7 +28,7 @@ class Extensions
      * @param Extension[] $Extension
      * @return \ascio\v2\Extensions
      */
-    public function setExtension(array $Extension)
+    public function setExtension(array $Extension = null)
     {
       $this->Extension = $Extension;
       return $this;

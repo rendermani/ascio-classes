@@ -20,12 +20,10 @@ class Response
      */
     protected $Values = null;
 
-    /**
-     * @param int $ResultCode
-     */
-    public function __construct($ResultCode)
+    
+    public function __construct()
     {
-      $this->ResultCode = $ResultCode;
+    
     }
 
     /**

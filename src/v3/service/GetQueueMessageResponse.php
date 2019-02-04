@@ -10,12 +10,10 @@ class GetQueueMessageResponse extends AbstractResponse
      */
     protected $Message = null;
 
-    /**
-     * @param int $ResultCode
-     */
-    public function __construct($ResultCode)
+    
+    public function __construct()
     {
-      parent::__construct($ResultCode);
+      parent::__construct();
     }
 
     /**

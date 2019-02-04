@@ -30,12 +30,10 @@ class MarkInfo
      */
     protected $Smd = null;
 
-    /**
-     * @param \DateTime $Created
-     */
-    public function __construct(\DateTime $Created)
+    
+    public function __construct()
     {
-      $this->Created = $Created->format(\DateTime::ATOM);
+    
     }
 
     /**
@@ -76,9 +74,13 @@ class MarkInfo
      * @param \DateTime $Created
      * @return \ascio\v3\MarkInfo
      */
-    public function setCreated(\DateTime $Created)
+    public function setCreated(\DateTime $Created = null)
     {
-      $this->Created = $Created->format(\DateTime::ATOM);
+      if ($Created == null) {
+       $this->Created = null;
+      } else {
+        $this->Created = $Created->format(\DateTime::ATOM);
+      }
       return $this;
     }
 
@@ -102,9 +104,13 @@ class MarkInfo
      * @param \DateTime $Expires
      * @return \ascio\v3\MarkInfo
      */
-    public function setExpires(\DateTime $Expires)
+    public function setExpires(\DateTime $Expires = null)
     {
-      $this->Expires = $Expires->format(\DateTime::ATOM);
+      if ($Expires == null) {
+       $this->Expires = null;
+      } else {
+        $this->Expires = $Expires->format(\DateTime::ATOM);
+      }
       return $this;
     }
 

@@ -115,9 +115,13 @@ class ZoneLogEntry
      * @param \DateTime $ActionDate
      * @return \ascio\dns\ZoneLogEntry
      */
-    public function setActionDate(\DateTime $ActionDate)
+    public function setActionDate(\DateTime $ActionDate = null)
     {
-      $this->ActionDate = $ActionDate->format(\DateTime::ATOM);
+      if ($ActionDate == null) {
+       $this->ActionDate = null;
+      } else {
+        $this->ActionDate = $ActionDate->format(\DateTime::ATOM);
+      }
       return $this;
     }
 

@@ -65,14 +65,10 @@ class NameWatch
      */
     protected $ObjectComment = null;
 
-    /**
-     * @param NotificationFrequencyType $NotificationFrequency
-     * @param int $Tier
-     */
-    public function __construct($NotificationFrequency, $Tier)
+    
+    public function __construct()
     {
-      $this->NotificationFrequency = $NotificationFrequency;
-      $this->Tier = $Tier;
+    
     }
 
     /**

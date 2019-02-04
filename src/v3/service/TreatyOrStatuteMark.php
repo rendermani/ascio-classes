@@ -133,9 +133,13 @@ class TreatyOrStatuteMark extends AbstractMark
      * @param \DateTime $ProtectionDate
      * @return \ascio\v3\TreatyOrStatuteMark
      */
-    public function setProtectionDate(\DateTime $ProtectionDate)
+    public function setProtectionDate(\DateTime $ProtectionDate = null)
     {
-      $this->ProtectionDate = $ProtectionDate->format(\DateTime::ATOM);
+      if ($ProtectionDate == null) {
+       $this->ProtectionDate = null;
+      } else {
+        $this->ProtectionDate = $ProtectionDate->format(\DateTime::ATOM);
+      }
       return $this;
     }
 
@@ -159,9 +163,13 @@ class TreatyOrStatuteMark extends AbstractMark
      * @param \DateTime $ExecutionDate
      * @return \ascio\v3\TreatyOrStatuteMark
      */
-    public function setExecutionDate(\DateTime $ExecutionDate)
+    public function setExecutionDate(\DateTime $ExecutionDate = null)
     {
-      $this->ExecutionDate = $ExecutionDate->format(\DateTime::ATOM);
+      if ($ExecutionDate == null) {
+       $this->ExecutionDate = null;
+      } else {
+        $this->ExecutionDate = $ExecutionDate->format(\DateTime::ATOM);
+      }
       return $this;
     }
 

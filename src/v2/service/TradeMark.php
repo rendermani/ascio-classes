@@ -60,14 +60,10 @@ class TradeMark
      */
     protected $RegDate = null;
 
-    /**
-     * @param \DateTime $Date
-     * @param \DateTime $RegDate
-     */
-    public function __construct(\DateTime $Date, \DateTime $RegDate)
+    
+    public function __construct()
     {
-      $this->Date = $Date->format(\DateTime::ATOM);
-      $this->RegDate = $RegDate->format(\DateTime::ATOM);
+    
     }
 
     /**
@@ -126,9 +122,13 @@ class TradeMark
      * @param \DateTime $Date
      * @return \ascio\v2\TradeMark
      */
-    public function setDate(\DateTime $Date)
+    public function setDate(\DateTime $Date = null)
     {
-      $this->Date = $Date->format(\DateTime::ATOM);
+      if ($Date == null) {
+       $this->Date = null;
+      } else {
+        $this->Date = $Date->format(\DateTime::ATOM);
+      }
       return $this;
     }
 
@@ -278,9 +278,13 @@ class TradeMark
      * @param \DateTime $RegDate
      * @return \ascio\v2\TradeMark
      */
-    public function setRegDate(\DateTime $RegDate)
+    public function setRegDate(\DateTime $RegDate = null)
     {
-      $this->RegDate = $RegDate->format(\DateTime::ATOM);
+      if ($RegDate == null) {
+       $this->RegDate = null;
+      } else {
+        $this->RegDate = $RegDate->format(\DateTime::ATOM);
+      }
       return $this;
     }
 

@@ -15,14 +15,10 @@ class PollQueueResponse extends AbstractResponse
      */
     protected $Message = null;
 
-    /**
-     * @param int $ResultCode
-     * @param int $TotalCount
-     */
-    public function __construct($ResultCode, $TotalCount)
+    
+    public function __construct()
     {
-      parent::__construct($ResultCode);
-      $this->TotalCount = $TotalCount;
+      parent::__construct();
     }
 
     /**

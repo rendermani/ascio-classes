@@ -15,14 +15,10 @@ class GetOrdersResponse extends AbstractResponse
      */
     protected $OrdersInfo = null;
 
-    /**
-     * @param int $ResultCode
-     * @param int $TotalCount
-     */
-    public function __construct($ResultCode, $TotalCount)
+    
+    public function __construct()
     {
-      parent::__construct($ResultCode);
-      $this->TotalCount = $TotalCount;
+      parent::__construct();
     }
 
     /**

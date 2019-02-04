@@ -35,16 +35,10 @@ abstract class Record
      */
     protected $UpdatedDate = null;
 
-    /**
-     * @param int $Id
-     * @param int $Serial
-     * @param int $TTL
-     */
-    public function __construct($Id, $Serial, $TTL)
+    
+    public function __construct()
     {
-      $this->Id = $Id;
-      $this->Serial = $Serial;
-      $this->TTL = $TTL;
+    
     }
 
     /**
@@ -157,9 +151,13 @@ abstract class Record
      * @param \DateTime $UpdatedDate
      * @return \ascio\dns\Record
      */
-    public function setUpdatedDate(\DateTime $UpdatedDate)
+    public function setUpdatedDate(\DateTime $UpdatedDate = null)
     {
-      $this->UpdatedDate = $UpdatedDate->format(\DateTime::ATOM);
+      if ($UpdatedDate == null) {
+       $this->UpdatedDate = null;
+      } else {
+        $this->UpdatedDate = $UpdatedDate->format(\DateTime::ATOM);
+      }
       return $this;
     }
 

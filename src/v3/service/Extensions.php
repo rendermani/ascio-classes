@@ -10,12 +10,10 @@ class Extensions
      */
     protected $KeyValue = null;
 
-    /**
-     * @param KeyValue[] $KeyValue
-     */
-    public function __construct(array $KeyValue)
+    
+    public function __construct()
     {
-      $this->KeyValue = $KeyValue;
+    
     }
 
     /**
@@ -30,7 +28,7 @@ class Extensions
      * @param KeyValue[] $KeyValue
      * @return \ascio\v3\Extensions
      */
-    public function setKeyValue(array $KeyValue)
+    public function setKeyValue(array $KeyValue = null)
     {
       $this->KeyValue = $KeyValue;
       return $this;

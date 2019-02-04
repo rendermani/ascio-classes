@@ -55,12 +55,10 @@ class GetOrdersRequest
      */
     protected $PageInfo = null;
 
-    /**
-     * @param SearchOrderSortType $OrderSort
-     */
-    public function __construct($OrderSort)
+    
+    public function __construct()
     {
-      $this->OrderSort = $OrderSort;
+    
     }
 
     /**
@@ -137,9 +135,13 @@ class GetOrdersRequest
      * @param \DateTime $FromDate
      * @return \ascio\v3\GetOrdersRequest
      */
-    public function setFromDate(\DateTime $FromDate)
+    public function setFromDate(\DateTime $FromDate = null)
     {
-      $this->FromDate = $FromDate->format(\DateTime::ATOM);
+      if ($FromDate == null) {
+       $this->FromDate = null;
+      } else {
+        $this->FromDate = $FromDate->format(\DateTime::ATOM);
+      }
       return $this;
     }
 
@@ -163,9 +165,13 @@ class GetOrdersRequest
      * @param \DateTime $ToDate
      * @return \ascio\v3\GetOrdersRequest
      */
-    public function setToDate(\DateTime $ToDate)
+    public function setToDate(\DateTime $ToDate = null)
     {
-      $this->ToDate = $ToDate->format(\DateTime::ATOM);
+      if ($ToDate == null) {
+       $this->ToDate = null;
+      } else {
+        $this->ToDate = $ToDate->format(\DateTime::ATOM);
+      }
       return $this;
     }
 

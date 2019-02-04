@@ -10,12 +10,10 @@ class AckQueueMessageRequest
      */
     protected $MessageId = null;
 
-    /**
-     * @param int $MessageId
-     */
-    public function __construct($MessageId)
+    
+    public function __construct()
     {
-      $this->MessageId = $MessageId;
+    
     }
 
     /**

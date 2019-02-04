@@ -55,14 +55,10 @@ class SearchOrderRequest
      */
     protected $OrderSort = null;
 
-    /**
-     * @param boolean $IncludeDomainDetails
-     * @param SearchOrderSortType $OrderSort
-     */
-    public function __construct($IncludeDomainDetails, $OrderSort)
+    
+    public function __construct()
     {
-      $this->IncludeDomainDetails = $IncludeDomainDetails;
-      $this->OrderSort = $OrderSort;
+    
     }
 
     /**
@@ -121,9 +117,13 @@ class SearchOrderRequest
      * @param \DateTime $FromDate
      * @return \ascio\v2\SearchOrderRequest
      */
-    public function setFromDate(\DateTime $FromDate)
+    public function setFromDate(\DateTime $FromDate = null)
     {
-      $this->FromDate = $FromDate->format(\DateTime::ATOM);
+      if ($FromDate == null) {
+       $this->FromDate = null;
+      } else {
+        $this->FromDate = $FromDate->format(\DateTime::ATOM);
+      }
       return $this;
     }
 
@@ -147,9 +147,13 @@ class SearchOrderRequest
      * @param \DateTime $ToDate
      * @return \ascio\v2\SearchOrderRequest
      */
-    public function setToDate(\DateTime $ToDate)
+    public function setToDate(\DateTime $ToDate = null)
     {
-      $this->ToDate = $ToDate->format(\DateTime::ATOM);
+      if ($ToDate == null) {
+       $this->ToDate = null;
+      } else {
+        $this->ToDate = $ToDate->format(\DateTime::ATOM);
+      }
       return $this;
     }
 

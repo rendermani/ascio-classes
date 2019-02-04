@@ -50,16 +50,10 @@ class QueueItem
      */
     protected $StatusList = null;
 
-    /**
-     * @param int $MsgId
-     * @param MessageType $MsgType
-     * @param OrderStatusType $OrderStatus
-     */
-    public function __construct($MsgId, $MsgType, $OrderStatus)
+    
+    public function __construct()
     {
-      $this->MsgId = $MsgId;
-      $this->MsgType = $MsgType;
-      $this->OrderStatus = $OrderStatus;
+    
     }
 
     /**

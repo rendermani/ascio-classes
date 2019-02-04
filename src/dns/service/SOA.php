@@ -35,22 +35,10 @@ class SOA extends Record
      */
     protected $SerialUsage = null;
 
-    /**
-     * @param int $Id
-     * @param int $Serial
-     * @param int $TTL
-     * @param int $Expire
-     * @param int $Refresh
-     * @param int $Retry
-     * @param int $SerialUsage
-     */
-    public function __construct($Id, $Serial, $TTL, $Expire, $Refresh, $Retry, $SerialUsage)
+    
+    public function __construct()
     {
-      parent::__construct($Id, $Serial, $TTL);
-      $this->Expire = $Expire;
-      $this->Refresh = $Refresh;
-      $this->Retry = $Retry;
-      $this->SerialUsage = $SerialUsage;
+      parent::__construct();
     }
 
     /**

@@ -128,9 +128,13 @@ class CourtValidatedMark extends AbstractMark
      * @param \DateTime $ProtectionDate
      * @return \ascio\v3\CourtValidatedMark
      */
-    public function setProtectionDate(\DateTime $ProtectionDate)
+    public function setProtectionDate(\DateTime $ProtectionDate = null)
     {
-      $this->ProtectionDate = $ProtectionDate->format(\DateTime::ATOM);
+      if ($ProtectionDate == null) {
+       $this->ProtectionDate = null;
+      } else {
+        $this->ProtectionDate = $ProtectionDate->format(\DateTime::ATOM);
+      }
       return $this;
     }
 

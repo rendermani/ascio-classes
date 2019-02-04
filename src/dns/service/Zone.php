@@ -51,9 +51,13 @@ class Zone
      * @param \DateTime $CreatedDate
      * @return \ascio\dns\Zone
      */
-    public function setCreatedDate(\DateTime $CreatedDate)
+    public function setCreatedDate(\DateTime $CreatedDate = null)
     {
-      $this->CreatedDate = $CreatedDate->format(\DateTime::ATOM);
+      if ($CreatedDate == null) {
+       $this->CreatedDate = null;
+      } else {
+        $this->CreatedDate = $CreatedDate->format(\DateTime::ATOM);
+      }
       return $this;
     }
 

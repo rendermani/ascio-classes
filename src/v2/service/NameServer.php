@@ -40,12 +40,10 @@ class NameServer
      */
     protected $Details = null;
 
-    /**
-     * @param \DateTime $CreDate
-     */
-    public function __construct(\DateTime $CreDate)
+    
+    public function __construct()
     {
-      $this->CreDate = $CreDate->format(\DateTime::ATOM);
+    
     }
 
     /**
@@ -68,9 +66,13 @@ class NameServer
      * @param \DateTime $CreDate
      * @return \ascio\v2\NameServer
      */
-    public function setCreDate(\DateTime $CreDate)
+    public function setCreDate(\DateTime $CreDate = null)
     {
-      $this->CreDate = $CreDate->format(\DateTime::ATOM);
+      if ($CreDate == null) {
+       $this->CreDate = null;
+      } else {
+        $this->CreDate = $CreDate->format(\DateTime::ATOM);
+      }
       return $this;
     }
 

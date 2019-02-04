@@ -35,12 +35,10 @@ abstract class AbstractOrderRequest
      */
     protected $Options = null;
 
-    /**
-     * @param OrderType $Type
-     */
-    public function __construct($Type)
+    
+    public function __construct()
     {
-      $this->Type = $Type;
+    
     }
 
     /**

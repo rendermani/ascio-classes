@@ -15,12 +15,10 @@ class MarkOrderRequest extends AbstractOrderRequest
      */
     protected $Documents = null;
 
-    /**
-     * @param OrderType $Type
-     */
-    public function __construct($Type)
+    
+    public function __construct()
     {
-      parent::__construct($Type);
+      parent::__construct();
     }
 
     /**

@@ -30,16 +30,10 @@ class PrivacyProxy
      */
     protected $Extensions = null;
 
-    /**
-     * @param boolean $PrivacyAdmin
-     * @param boolean $PrivacyTech
-     * @param boolean $PrivacyBilling
-     */
-    public function __construct($PrivacyAdmin, $PrivacyTech, $PrivacyBilling)
+    
+    public function __construct()
     {
-      $this->PrivacyAdmin = $PrivacyAdmin;
-      $this->PrivacyTech = $PrivacyTech;
-      $this->PrivacyBilling = $PrivacyBilling;
+    
     }
 
     /**

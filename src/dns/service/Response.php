@@ -30,12 +30,10 @@ class Response
      */
     protected $Values = null;
 
-    /**
-     * @param int $StatusCode
-     */
-    public function __construct($StatusCode)
+    
+    public function __construct()
     {
-      $this->StatusCode = $StatusCode;
+    
     }
 
     /**

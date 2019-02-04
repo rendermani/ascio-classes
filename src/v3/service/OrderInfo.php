@@ -25,14 +25,10 @@ class OrderInfo
      */
     protected $OrderRequest = null;
 
-    /**
-     * @param OrderStatusType $Status
-     * @param \DateTime $Created
-     */
-    public function __construct($Status, \DateTime $Created)
+    
+    public function __construct()
     {
-      $this->Status = $Status;
-      $this->Created = $Created->format(\DateTime::ATOM);
+    
     }
 
     /**
@@ -91,9 +87,13 @@ class OrderInfo
      * @param \DateTime $Created
      * @return \ascio\v3\OrderInfo
      */
-    public function setCreated(\DateTime $Created)
+    public function setCreated(\DateTime $Created = null)
     {
-      $this->Created = $Created->format(\DateTime::ATOM);
+      if ($Created == null) {
+       $this->Created = null;
+      } else {
+        $this->Created = $Created->format(\DateTime::ATOM);
+      }
       return $this;
     }
 

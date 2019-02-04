@@ -85,16 +85,10 @@ class NameWatchInfo
      */
     protected $ObjectComment = null;
 
-    /**
-     * @param \DateTime $Created
-     * @param NotificationFrequencyType $NotificationFrequency
-     * @param int $Tier
-     */
-    public function __construct(\DateTime $Created, $NotificationFrequency, $Tier)
+    
+    public function __construct()
     {
-      $this->Created = $Created->format(\DateTime::ATOM);
-      $this->NotificationFrequency = $NotificationFrequency;
-      $this->Tier = $Tier;
+    
     }
 
     /**
@@ -153,9 +147,13 @@ class NameWatchInfo
      * @param \DateTime $Created
      * @return \ascio\v3\NameWatchInfo
      */
-    public function setCreated(\DateTime $Created)
+    public function setCreated(\DateTime $Created = null)
     {
-      $this->Created = $Created->format(\DateTime::ATOM);
+      if ($Created == null) {
+       $this->Created = null;
+      } else {
+        $this->Created = $Created->format(\DateTime::ATOM);
+      }
       return $this;
     }
 
@@ -179,9 +177,13 @@ class NameWatchInfo
      * @param \DateTime $Expires
      * @return \ascio\v3\NameWatchInfo
      */
-    public function setExpires(\DateTime $Expires)
+    public function setExpires(\DateTime $Expires = null)
     {
-      $this->Expires = $Expires->format(\DateTime::ATOM);
+      if ($Expires == null) {
+       $this->Expires = null;
+      } else {
+        $this->Expires = $Expires->format(\DateTime::ATOM);
+      }
       return $this;
     }
 

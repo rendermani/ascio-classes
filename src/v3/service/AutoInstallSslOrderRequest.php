@@ -10,12 +10,10 @@ class AutoInstallSslOrderRequest extends AbstractOrderRequest
      */
     protected $AutoInstallSsl = null;
 
-    /**
-     * @param OrderType $Type
-     */
-    public function __construct($Type)
+    
+    public function __construct()
     {
-      parent::__construct($Type);
+      parent::__construct();
     }
 
     /**

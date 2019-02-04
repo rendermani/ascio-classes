@@ -6,89 +6,93 @@ class DnsService extends \SoapClient
 {
 
     /**
-     * @var array $classmap The defined aws-classes
+     * @var array $classmap The defined classes
      */
     private static $classmap = array (
-      'GetRoles' => 'ascio\\dns\\GetRoles',
-      'GetRolesResponse' => 'ascio\\dns\\GetRolesResponse',
-      'Response' => 'ascio\\dns\\Response',
-      'ArrayOfRoleItem' => 'ascio\\dns\\ArrayOfRoleItem',
-      'RoleItem' => 'ascio\\dns\\RoleItem',
-      'CreateUser' => 'ascio\\dns\\CreateUser',
-      'User' => 'ascio\\dns\\User',
-      'CreateUserResponse' => 'ascio\\dns\\CreateUserResponse',
-      'UpdateUser' => 'ascio\\dns\\UpdateUser',
-      'UpdateUserResponse' => 'ascio\\dns\\UpdateUserResponse',
-      'DeleteUser' => 'ascio\\dns\\DeleteUser',
-      'DeleteUserResponse' => 'ascio\\dns\\DeleteUserResponse',
-      'GetUser' => 'ascio\\dns\\GetUser',
-      'GetUserResponse' => 'ascio\\dns\\GetUserResponse',
-      'SearchUser' => 'ascio\\dns\\SearchUser',
-      'ArrayOfSearchUserClause' => 'ascio\\dns\\ArrayOfSearchUserClause',
-      'SearchUserClause' => 'ascio\\dns\\SearchUserClause',
-      'SearchUserResponse' => 'ascio\\dns\\SearchUserResponse',
-      'ChangePassword' => 'ascio\\dns\\ChangePassword',
-      'ChangePasswordResponse' => 'ascio\\dns\\ChangePasswordResponse',
-      'CreateZone' => 'ascio\\dns\\CreateZone',
-      'ArrayOfRecord' => 'ascio\\dns\\ArrayOfRecord',
-      'Record' => 'ascio\\dns\\Record',
-      'WebForward' => 'ascio\\dns\\WebForward',
-      'SRV' => 'ascio\\dns\\SRV',
-      'CNAME' => 'ascio\\dns\\CNAME',
-      'SOA' => 'ascio\\dns\\SOA',
-      'TXT' => 'ascio\\dns\\TXT',
-      'PTR' => 'ascio\\dns\\PTR',
-      'MX' => 'ascio\\dns\\MX',
-      'A' => 'ascio\\dns\\A',
-      'AAAA' => 'ascio\\dns\\AAAA',
-      'NS' => 'ascio\\dns\\NS',
-      'MailForward' => 'ascio\\dns\\MailForward',
-      'CreateZoneResponse' => 'ascio\\dns\\CreateZoneResponse',
-      'DeleteZone' => 'ascio\\dns\\DeleteZone',
-      'DeleteZoneResponse' => 'ascio\\dns\\DeleteZoneResponse',
-      'GetZoneLog' => 'ascio\\dns\\GetZoneLog',
-      'GetZoneLogResponse' => 'ascio\\dns\\GetZoneLogResponse',
-      'ArrayOfZoneLogEntry' => 'ascio\\dns\\ArrayOfZoneLogEntry',
-      'ZoneLogEntry' => 'ascio\\dns\\ZoneLogEntry',
-      'RestoreZone' => 'ascio\\dns\\RestoreZone',
-      'RestoreZoneResponse' => 'ascio\\dns\\RestoreZoneResponse',
-      'GetZone' => 'ascio\\dns\\GetZone',
-      'GetZoneResponse' => 'ascio\\dns\\GetZoneResponse',
-      'Zone' => 'ascio\\dns\\Zone',
-      'SearchZoneNames' => 'ascio\\dns\\SearchZoneNames',
-      'ArrayOfSearchZoneClause' => 'ascio\\dns\\ArrayOfSearchZoneClause',
-      'SearchZoneClause' => 'ascio\\dns\\SearchZoneClause',
-      'SearchZoneNamesResponse' => 'ascio\\dns\\SearchZoneNamesResponse',
-      'SearchZone' => 'ascio\\dns\\SearchZone',
-      'SearchZoneResponse' => 'ascio\\dns\\SearchZoneResponse',
-      'ArrayOfZone' => 'ascio\\dns\\ArrayOfZone',
-      'SetZoneOwner' => 'ascio\\dns\\SetZoneOwner',
-      'SetZoneOwnerResponse' => 'ascio\\dns\\SetZoneOwnerResponse',
-      'CreateRecord' => 'ascio\\dns\\CreateRecord',
-      'CreateRecordResponse' => 'ascio\\dns\\CreateRecordResponse',
-      'UpdateRecord' => 'ascio\\dns\\UpdateRecord',
-      'UpdateRecordResponse' => 'ascio\\dns\\UpdateRecordResponse',
-      'DeleteRecord' => 'ascio\\dns\\DeleteRecord',
-      'DeleteRecordResponse' => 'ascio\\dns\\DeleteRecordResponse',
-      'GetRecord' => 'ascio\\dns\\GetRecord',
-      'GetRecordResponse' => 'ascio\\dns\\GetRecordResponse',
-      'ArrayOfstring' => 'ascio\\dns\\ArrayOfstring',
-    );
+  'GetRoles' => 'ascio\\dns\\GetRoles',
+  'GetRolesResponse' => 'ascio\\dns\\GetRolesResponse',
+  'Response' => 'ascio\\dns\\Response',
+  'ArrayOfRoleItem' => 'ascio\\dns\\ArrayOfRoleItem',
+  'RoleItem' => 'ascio\\dns\\RoleItem',
+  'CreateUser' => 'ascio\\dns\\CreateUser',
+  'User' => 'ascio\\dns\\User',
+  'CreateUserResponse' => 'ascio\\dns\\CreateUserResponse',
+  'UpdateUser' => 'ascio\\dns\\UpdateUser',
+  'UpdateUserResponse' => 'ascio\\dns\\UpdateUserResponse',
+  'DeleteUser' => 'ascio\\dns\\DeleteUser',
+  'DeleteUserResponse' => 'ascio\\dns\\DeleteUserResponse',
+  'GetUser' => 'ascio\\dns\\GetUser',
+  'GetUserResponse' => 'ascio\\dns\\GetUserResponse',
+  'SearchUser' => 'ascio\\dns\\SearchUser',
+  'ArrayOfSearchUserClause' => 'ascio\\dns\\ArrayOfSearchUserClause',
+  'SearchUserClause' => 'ascio\\dns\\SearchUserClause',
+  'SearchUserResponse' => 'ascio\\dns\\SearchUserResponse',
+  'ChangePassword' => 'ascio\\dns\\ChangePassword',
+  'ChangePasswordResponse' => 'ascio\\dns\\ChangePasswordResponse',
+  'CreateZone' => 'ascio\\dns\\CreateZone',
+  'ArrayOfRecord' => 'ascio\\dns\\ArrayOfRecord',
+  'Record' => 'ascio\\dns\\Record',
+  'WebForward' => 'ascio\\dns\\WebForward',
+  'SRV' => 'ascio\\dns\\SRV',
+  'CNAME' => 'ascio\\dns\\CNAME',
+  'SOA' => 'ascio\\dns\\SOA',
+  'TXT' => 'ascio\\dns\\TXT',
+  'PTR' => 'ascio\\dns\\PTR',
+  'MX' => 'ascio\\dns\\MX',
+  'A' => 'ascio\\dns\\A',
+  'AAAA' => 'ascio\\dns\\AAAA',
+  'NS' => 'ascio\\dns\\NS',
+  'MailForward' => 'ascio\\dns\\MailForward',
+  'CreateZoneResponse' => 'ascio\\dns\\CreateZoneResponse',
+  'DeleteZone' => 'ascio\\dns\\DeleteZone',
+  'DeleteZoneResponse' => 'ascio\\dns\\DeleteZoneResponse',
+  'GetZoneLog' => 'ascio\\dns\\GetZoneLog',
+  'GetZoneLogResponse' => 'ascio\\dns\\GetZoneLogResponse',
+  'ArrayOfZoneLogEntry' => 'ascio\\dns\\ArrayOfZoneLogEntry',
+  'ZoneLogEntry' => 'ascio\\dns\\ZoneLogEntry',
+  'RestoreZone' => 'ascio\\dns\\RestoreZone',
+  'RestoreZoneResponse' => 'ascio\\dns\\RestoreZoneResponse',
+  'GetZone' => 'ascio\\dns\\GetZone',
+  'GetZoneResponse' => 'ascio\\dns\\GetZoneResponse',
+  'Zone' => 'ascio\\dns\\Zone',
+  'SearchZoneNames' => 'ascio\\dns\\SearchZoneNames',
+  'ArrayOfSearchZoneClause' => 'ascio\\dns\\ArrayOfSearchZoneClause',
+  'SearchZoneClause' => 'ascio\\dns\\SearchZoneClause',
+  'SearchZoneNamesResponse' => 'ascio\\dns\\SearchZoneNamesResponse',
+  'SearchZone' => 'ascio\\dns\\SearchZone',
+  'SearchZoneResponse' => 'ascio\\dns\\SearchZoneResponse',
+  'ArrayOfZone' => 'ascio\\dns\\ArrayOfZone',
+  'SetZoneOwner' => 'ascio\\dns\\SetZoneOwner',
+  'SetZoneOwnerResponse' => 'ascio\\dns\\SetZoneOwnerResponse',
+  'CreateRecord' => 'ascio\\dns\\CreateRecord',
+  'CreateRecordResponse' => 'ascio\\dns\\CreateRecordResponse',
+  'UpdateRecord' => 'ascio\\dns\\UpdateRecord',
+  'UpdateRecordResponse' => 'ascio\\dns\\UpdateRecordResponse',
+  'DeleteRecord' => 'ascio\\dns\\DeleteRecord',
+  'DeleteRecordResponse' => 'ascio\\dns\\DeleteRecordResponse',
+  'GetRecord' => 'ascio\\dns\\GetRecord',
+  'GetRecordResponse' => 'ascio\\dns\\GetRecordResponse',
+  'ArrayOfstring' => 'ascio\\dns\\ArrayOfstring',
+);
 
     /**
-     * @param array $options A array of config values
      * @param string $wsdl The wsdl file to use
+     * @param array $options A array of config values
      */
-    public function __construct(array $options = array(), $wsdl = 'https://dnsservice.ascio.com/2010/10/30/DnsService.wsdl')
+    public function __construct(array $options = array(), $wsdl = null)
     {
-      foreach (self::$classmap as $key => $value) {
-        if (!isset($options['classmap'][$key])) {
-          $options['classmap'][$key] = $value;
-        }
-      }
+    
+  foreach (self::$classmap as $key => $value) {
+    if (!isset($options['classmap'][$key])) {
+      $options['classmap'][$key] = $value;
+    }
+  }
       $options = array_merge(array (
-      'features' => 1,
-    ), $options);
+  'features' => 1,
+), $options);
+      if (!$wsdl) {
+        $wsdl = 'https://dnsservice.ascio.com/2010/10/30/DnsService.wsdl';
+      }
       parent::__construct($wsdl, $options);
     }
 

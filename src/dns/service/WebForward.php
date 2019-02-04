@@ -11,14 +11,11 @@ class WebForward extends Record
     protected $RedirectionType = null;
 
     /**
-     * @param int $Id
-     * @param int $Serial
-     * @param int $TTL
      * @param RedirectionType $RedirectionType
      */
-    public function __construct($Id, $Serial, $TTL, $RedirectionType)
+    public function __construct($RedirectionType)
     {
-      parent::__construct($Id, $Serial, $TTL);
+      parent::__construct();
       $this->RedirectionType = $RedirectionType;
     }
 

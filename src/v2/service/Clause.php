@@ -20,12 +20,10 @@ class Clause
      */
     protected $Value = null;
 
-    /**
-     * @param SearchOperatorType $Operator
-     */
-    public function __construct($Operator)
+    
+    public function __construct()
     {
-      $this->Operator = $Operator;
+    
     }
 
     /**

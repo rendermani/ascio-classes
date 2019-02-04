@@ -66,9 +66,13 @@ class User
      * @param \DateTime $CreatedDate
      * @return \ascio\dns\User
      */
-    public function setCreatedDate(\DateTime $CreatedDate)
+    public function setCreatedDate(\DateTime $CreatedDate = null)
     {
-      $this->CreatedDate = $CreatedDate->format(\DateTime::ATOM);
+      if ($CreatedDate == null) {
+       $this->CreatedDate = null;
+      } else {
+        $this->CreatedDate = $CreatedDate->format(\DateTime::ATOM);
+      }
       return $this;
     }
 
@@ -164,9 +168,13 @@ class User
      * @param \DateTime $UpdatedDate
      * @return \ascio\dns\User
      */
-    public function setUpdatedDate(\DateTime $UpdatedDate)
+    public function setUpdatedDate(\DateTime $UpdatedDate = null)
     {
-      $this->UpdatedDate = $UpdatedDate->format(\DateTime::ATOM);
+      if ($UpdatedDate == null) {
+       $this->UpdatedDate = null;
+      } else {
+        $this->UpdatedDate = $UpdatedDate->format(\DateTime::ATOM);
+      }
       return $this;
     }
 

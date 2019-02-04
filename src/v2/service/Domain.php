@@ -126,13 +126,19 @@ class Domain
     protected $PrivacyProxy = null;
 
     /**
-     * @param \DateTime $CreDate
-     * @param \DateTime $ExpDate
+     * @var string $DomainType
      */
-    public function __construct(\DateTime $CreDate, \DateTime $ExpDate)
+    protected $DomainType = null;
+
+    /**
+     * @var string $DiscloseSocialData
+     */
+    protected $DiscloseSocialData = null;
+
+    
+    public function __construct()
     {
-      $this->CreDate = $CreDate->format(\DateTime::ATOM);
-      $this->ExpDate = $ExpDate->format(\DateTime::ATOM);
+    
     }
 
     /**
@@ -263,9 +269,13 @@ class Domain
      * @param \DateTime $CreDate
      * @return \ascio\v2\Domain
      */
-    public function setCreDate(\DateTime $CreDate)
+    public function setCreDate(\DateTime $CreDate = null)
     {
-      $this->CreDate = $CreDate->format(\DateTime::ATOM);
+      if ($CreDate == null) {
+       $this->CreDate = null;
+      } else {
+        $this->CreDate = $CreDate->format(\DateTime::ATOM);
+      }
       return $this;
     }
 
@@ -289,9 +299,13 @@ class Domain
      * @param \DateTime $ExpDate
      * @return \ascio\v2\Domain
      */
-    public function setExpDate(\DateTime $ExpDate)
+    public function setExpDate(\DateTime $ExpDate = null)
     {
-      $this->ExpDate = $ExpDate->format(\DateTime::ATOM);
+      if ($ExpDate == null) {
+       $this->ExpDate = null;
+      } else {
+        $this->ExpDate = $ExpDate->format(\DateTime::ATOM);
+      }
       return $this;
     }
 
@@ -580,6 +594,42 @@ class Domain
     public function setPrivacyProxy($PrivacyProxy)
     {
       $this->PrivacyProxy = $PrivacyProxy;
+      return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDomainType()
+    {
+      return $this->DomainType;
+    }
+
+    /**
+     * @param string $DomainType
+     * @return \ascio\v2\Domain
+     */
+    public function setDomainType($DomainType)
+    {
+      $this->DomainType = $DomainType;
+      return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDiscloseSocialData()
+    {
+      return $this->DiscloseSocialData;
+    }
+
+    /**
+     * @param string $DiscloseSocialData
+     * @return \ascio\v2\Domain
+     */
+    public function setDiscloseSocialData($DiscloseSocialData)
+    {
+      $this->DiscloseSocialData = $DiscloseSocialData;
       return $this;
     }
 

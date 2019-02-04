@@ -60,18 +60,10 @@ class QueueMessage
      */
     protected $OrderType = null;
 
-    /**
-     * @param int $Id
-     * @param MessageType $MessageType
-     * @param OrderStatusType $OrderStatus
-     * @param OrderType $OrderType
-     */
-    public function __construct($Id, $MessageType, $OrderStatus, $OrderType)
+    
+    public function __construct()
     {
-      $this->Id = $Id;
-      $this->MessageType = $MessageType;
-      $this->OrderStatus = $OrderStatus;
-      $this->OrderType = $OrderType;
+    
     }
 
     /**

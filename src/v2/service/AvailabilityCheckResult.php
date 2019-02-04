@@ -25,14 +25,10 @@ class AvailabilityCheckResult
      */
     protected $StatusMessage = null;
 
-    /**
-     * @param QualityType $Quality
-     * @param int $StatusCode
-     */
-    public function __construct($Quality, $StatusCode)
+    
+    public function __construct()
     {
-      $this->Quality = $Quality;
-      $this->StatusCode = $StatusCode;
+    
     }
 
     /**

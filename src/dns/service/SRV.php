@@ -20,20 +20,10 @@ class SRV extends Record
      */
     protected $Weight = null;
 
-    /**
-     * @param int $Id
-     * @param int $Serial
-     * @param int $TTL
-     * @param int $Port
-     * @param int $Priority
-     * @param int $Weight
-     */
-    public function __construct($Id, $Serial, $TTL, $Port, $Priority, $Weight)
+    
+    public function __construct()
     {
-      parent::__construct($Id, $Serial, $TTL);
-      $this->Port = $Port;
-      $this->Priority = $Priority;
-      $this->Weight = $Weight;
+      parent::__construct();
     }
 
     /**

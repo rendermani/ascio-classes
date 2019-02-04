@@ -95,12 +95,10 @@ class Contact
      */
     protected $OrganisationNumber = null;
 
-    /**
-     * @param \DateTime $CreDate
-     */
-    public function __construct(\DateTime $CreDate)
+    
+    public function __construct()
     {
-      $this->CreDate = $CreDate->format(\DateTime::ATOM);
+    
     }
 
     /**
@@ -123,9 +121,13 @@ class Contact
      * @param \DateTime $CreDate
      * @return \ascio\v2\Contact
      */
-    public function setCreDate(\DateTime $CreDate)
+    public function setCreDate(\DateTime $CreDate = null)
     {
-      $this->CreDate = $CreDate->format(\DateTime::ATOM);
+      if ($CreDate == null) {
+       $this->CreDate = null;
+      } else {
+        $this->CreDate = $CreDate->format(\DateTime::ATOM);
+      }
       return $this;
     }
 

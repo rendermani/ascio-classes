@@ -66,13 +66,16 @@ class Order
     protected $CreDate = null;
 
     /**
-     * @param OrderType $Type
-     * @param OrderStatusType $Status
+     * @var int $AgreedPrice
      */
-    public function __construct($Type, $Status)
+    protected $AgreedPrice = null;
+
+    /**
+     * @param OrderType $Type
+     */
+    public function __construct($Type)
     {
       $this->Type = $Type;
-      $this->Status = $Status;
     }
 
     /**
@@ -293,9 +296,31 @@ class Order
      * @param \DateTime $CreDate
      * @return \ascio\v2\Order
      */
-    public function setCreDate(\DateTime $CreDate)
+    public function setCreDate(\DateTime $CreDate = null)
     {
-      $this->CreDate = $CreDate->format(\DateTime::ATOM);
+      if ($CreDate == null) {
+       $this->CreDate = null;
+      } else {
+        $this->CreDate = $CreDate->format(\DateTime::ATOM);
+      }
+      return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getAgreedPrice()
+    {
+      return $this->AgreedPrice;
+    }
+
+    /**
+     * @param int $AgreedPrice
+     * @return \ascio\v2\Order
+     */
+    public function setAgreedPrice($AgreedPrice)
+    {
+      $this->AgreedPrice = $AgreedPrice;
       return $this;
     }
 

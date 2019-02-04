@@ -2,13 +2,13 @@
 
 namespace ascio\v2;
 
-class ArrayOfMessage implements \ArrayAccess, \Iterator, \Countable
+class ArrayOfPrices implements \ArrayAccess, \Iterator, \Countable
 {
 
     /**
-     * @var Message[] $Message
+     * @var Price[] $Price
      */
-    protected $Message = null;
+    protected $Price = null;
 
     
     public function __construct()
@@ -17,20 +17,20 @@ class ArrayOfMessage implements \ArrayAccess, \Iterator, \Countable
     }
 
     /**
-     * @return Message[]
+     * @return Price[]
      */
-    public function getMessage()
+    public function getPrice()
     {
-      return $this->Message;
+      return $this->Price;
     }
 
     /**
-     * @param Message[] $Message
-     * @return \ascio\v2\ArrayOfMessage
+     * @param Price[] $Price
+     * @return \ascio\v2\ArrayOfPrices
      */
-    public function setMessage(array $Message = null)
+    public function setPrice(array $Price = null)
     {
-      $this->Message = $Message;
+      $this->Price = $Price;
       return $this;
     }
 
@@ -42,33 +42,33 @@ class ArrayOfMessage implements \ArrayAccess, \Iterator, \Countable
      */
     public function offsetExists($offset)
     {
-      return isset($this->Message[$offset]);
+      return isset($this->Price[$offset]);
     }
 
     /**
      * ArrayAccess implementation
      *
      * @param mixed $offset The offset to retrieve
-     * @return Message
+     * @return Price
      */
     public function offsetGet($offset)
     {
-      return $this->Message[$offset];
+      return $this->Price[$offset];
     }
 
     /**
      * ArrayAccess implementation
      *
      * @param mixed $offset The offset to assign the value to
-     * @param Message $value The value to set
+     * @param Price $value The value to set
      * @return void
      */
     public function offsetSet($offset, $value)
     {
       if (!isset($offset)) {
-        $this->Message[] = $value;
+        $this->Price[] = $value;
       } else {
-        $this->Message[$offset] = $value;
+        $this->Price[$offset] = $value;
       }
     }
 
@@ -80,17 +80,17 @@ class ArrayOfMessage implements \ArrayAccess, \Iterator, \Countable
      */
     public function offsetUnset($offset)
     {
-      unset($this->Message[$offset]);
+      unset($this->Price[$offset]);
     }
 
     /**
      * Iterator implementation
      *
-     * @return Message Return the current element
+     * @return Price Return the current element
      */
     public function current()
     {
-      return current($this->Message);
+      return current($this->Price);
     }
 
     /**
@@ -101,7 +101,7 @@ class ArrayOfMessage implements \ArrayAccess, \Iterator, \Countable
      */
     public function next()
     {
-      next($this->Message);
+      next($this->Price);
     }
 
     /**
@@ -111,7 +111,7 @@ class ArrayOfMessage implements \ArrayAccess, \Iterator, \Countable
      */
     public function key()
     {
-      return key($this->Message);
+      return key($this->Price);
     }
 
     /**
@@ -132,17 +132,17 @@ class ArrayOfMessage implements \ArrayAccess, \Iterator, \Countable
      */
     public function rewind()
     {
-      reset($this->Message);
+      reset($this->Price);
     }
 
     /**
      * Countable implementation
      *
-     * @return Message Return count of elements
+     * @return Price Return count of elements
      */
     public function count()
     {
-      return count($this->Message);
+      return count($this->Price);
     }
 
 }

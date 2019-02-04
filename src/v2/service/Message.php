@@ -40,14 +40,10 @@ class Message
      */
     protected $Type = null;
 
-    /**
-     * @param \DateTime $Created
-     * @param MessageType $Type
-     */
-    public function __construct(\DateTime $Created, $Type)
+    
+    public function __construct()
     {
-      $this->Created = $Created->format(\DateTime::ATOM);
-      $this->Type = $Type;
+    
     }
 
     /**
@@ -106,9 +102,13 @@ class Message
      * @param \DateTime $Created
      * @return \ascio\v2\Message
      */
-    public function setCreated(\DateTime $Created)
+    public function setCreated(\DateTime $Created = null)
     {
-      $this->Created = $Created->format(\DateTime::ATOM);
+      if ($Created == null) {
+       $this->Created = null;
+      } else {
+        $this->Created = $Created->format(\DateTime::ATOM);
+      }
       return $this;
     }
 

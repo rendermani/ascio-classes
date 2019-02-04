@@ -35,12 +35,10 @@ class AutoInstallSsl
      */
     protected $ObjectComment = null;
 
-    /**
-     * @param int $SanCount
-     */
-    public function __construct($SanCount)
+    
+    public function __construct()
     {
-      $this->SanCount = $SanCount;
+    
     }
 
     /**

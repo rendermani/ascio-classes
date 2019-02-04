@@ -10,16 +10,10 @@ class MX extends Record
      */
     protected $Priority = null;
 
-    /**
-     * @param int $Id
-     * @param int $Serial
-     * @param int $TTL
-     * @param int $Priority
-     */
-    public function __construct($Id, $Serial, $TTL, $Priority)
+    
+    public function __construct()
     {
-      parent::__construct($Id, $Serial, $TTL);
-      $this->Priority = $Priority;
+      parent::__construct();
     }
 
     /**

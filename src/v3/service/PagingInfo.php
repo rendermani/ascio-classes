@@ -15,14 +15,10 @@ class PagingInfo
      */
     protected $PageSize = null;
 
-    /**
-     * @param int $PageIndex
-     * @param int $PageSize
-     */
-    public function __construct($PageIndex, $PageSize)
+    
+    public function __construct()
     {
-      $this->PageIndex = $PageIndex;
-      $this->PageSize = $PageSize;
+    
     }
 
     /**

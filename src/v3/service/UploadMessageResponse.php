@@ -10,14 +10,10 @@ class UploadMessageResponse extends AbstractResponse
      */
     protected $MessageId = null;
 
-    /**
-     * @param int $ResultCode
-     * @param int $MessageId
-     */
-    public function __construct($ResultCode, $MessageId)
+    
+    public function __construct()
     {
-      parent::__construct($ResultCode);
-      $this->MessageId = $MessageId;
+      parent::__construct();
     }
 
     /**

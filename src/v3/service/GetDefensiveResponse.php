@@ -10,12 +10,10 @@ class GetDefensiveResponse extends AbstractResponse
      */
     protected $DefensiveInfo = null;
 
-    /**
-     * @param int $ResultCode
-     */
-    public function __construct($ResultCode)
+    
+    public function __construct()
     {
-      parent::__construct($ResultCode);
+      parent::__construct();
     }
 
     /**

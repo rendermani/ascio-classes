@@ -102,9 +102,13 @@ class Trademark extends AbstractMark
      * @param \DateTime $ApplicationDate
      * @return \ascio\v3\Trademark
      */
-    public function setApplicationDate(\DateTime $ApplicationDate)
+    public function setApplicationDate(\DateTime $ApplicationDate = null)
     {
-      $this->ApplicationDate = $ApplicationDate->format(\DateTime::ATOM);
+      if ($ApplicationDate == null) {
+       $this->ApplicationDate = null;
+      } else {
+        $this->ApplicationDate = $ApplicationDate->format(\DateTime::ATOM);
+      }
       return $this;
     }
 
@@ -128,9 +132,13 @@ class Trademark extends AbstractMark
      * @param \DateTime $RegistrationDate
      * @return \ascio\v3\Trademark
      */
-    public function setRegistrationDate(\DateTime $RegistrationDate)
+    public function setRegistrationDate(\DateTime $RegistrationDate = null)
     {
-      $this->RegistrationDate = $RegistrationDate->format(\DateTime::ATOM);
+      if ($RegistrationDate == null) {
+       $this->RegistrationDate = null;
+      } else {
+        $this->RegistrationDate = $RegistrationDate->format(\DateTime::ATOM);
+      }
       return $this;
     }
 
@@ -154,9 +162,13 @@ class Trademark extends AbstractMark
      * @param \DateTime $ExpirationDate
      * @return \ascio\v3\Trademark
      */
-    public function setExpirationDate(\DateTime $ExpirationDate)
+    public function setExpirationDate(\DateTime $ExpirationDate = null)
     {
-      $this->ExpirationDate = $ExpirationDate->format(\DateTime::ATOM);
+      if ($ExpirationDate == null) {
+       $this->ExpirationDate = null;
+      } else {
+        $this->ExpirationDate = $ExpirationDate->format(\DateTime::ATOM);
+      }
       return $this;
     }
 

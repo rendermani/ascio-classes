@@ -64,9 +64,13 @@ class RegistrantVerificationDetails
      * @param \DateTime $VerificationDate
      * @return \ascio\v2\RegistrantVerificationDetails
      */
-    public function setVerificationDate(\DateTime $VerificationDate)
+    public function setVerificationDate(\DateTime $VerificationDate = null)
     {
-      $this->VerificationDate = $VerificationDate->format(\DateTime::ATOM);
+      if ($VerificationDate == null) {
+       $this->VerificationDate = null;
+      } else {
+        $this->VerificationDate = $VerificationDate->format(\DateTime::ATOM);
+      }
       return $this;
     }
 

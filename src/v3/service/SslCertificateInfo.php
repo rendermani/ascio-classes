@@ -85,16 +85,10 @@ class SslCertificateInfo
      */
     protected $ValidationType = null;
 
-    /**
-     * @param \DateTime $Created
-     * @param WebServerType $WebServerType
-     * @param SslDomainValidationType $ValidationType
-     */
-    public function __construct(\DateTime $Created, $WebServerType, $ValidationType)
+    
+    public function __construct()
     {
-      $this->Created = $Created->format(\DateTime::ATOM);
-      $this->WebServerType = $WebServerType;
-      $this->ValidationType = $ValidationType;
+    
     }
 
     /**
@@ -153,9 +147,13 @@ class SslCertificateInfo
      * @param \DateTime $Created
      * @return \ascio\v3\SslCertificateInfo
      */
-    public function setCreated(\DateTime $Created)
+    public function setCreated(\DateTime $Created = null)
     {
-      $this->Created = $Created->format(\DateTime::ATOM);
+      if ($Created == null) {
+       $this->Created = null;
+      } else {
+        $this->Created = $Created->format(\DateTime::ATOM);
+      }
       return $this;
     }
 
@@ -179,9 +177,13 @@ class SslCertificateInfo
      * @param \DateTime $Expires
      * @return \ascio\v3\SslCertificateInfo
      */
-    public function setExpires(\DateTime $Expires)
+    public function setExpires(\DateTime $Expires = null)
     {
-      $this->Expires = $Expires->format(\DateTime::ATOM);
+      if ($Expires == null) {
+       $this->Expires = null;
+      } else {
+        $this->Expires = $Expires->format(\DateTime::ATOM);
+      }
       return $this;
     }
 

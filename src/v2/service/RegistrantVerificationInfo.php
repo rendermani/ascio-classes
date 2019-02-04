@@ -20,12 +20,10 @@ class RegistrantVerificationInfo
      */
     protected $VerificationDetails = null;
 
-    /**
-     * @param RegistrantVerificationStatus $VerificationStatus
-     */
-    public function __construct($VerificationStatus)
+    
+    public function __construct()
     {
-      $this->VerificationStatus = $VerificationStatus;
+    
     }
 
     /**

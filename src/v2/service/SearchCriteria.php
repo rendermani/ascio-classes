@@ -25,12 +25,10 @@ class SearchCriteria
      */
     protected $Withstates = null;
 
-    /**
-     * @param SearchModeType $Mode
-     */
-    public function __construct($Mode)
+    
+    public function __construct()
     {
-      $this->Mode = $Mode;
+    
     }
 
     /**
