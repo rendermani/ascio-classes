@@ -42,5 +42,11 @@
             "ascio\\lib\\v2\\" : "src/lib/v2",
             "ascio\\lib\\v3\\" : "src/lib/v3"
         }
+    },
+    "scripts": {
+        "post-update-cmd": "ascio\\lib\\composer\\Update::postUpdate",
+        "post-package-install": [
+            "ascio\\lib\\composer\\Update::postPackageInstall"
+        ]
     }
 }
