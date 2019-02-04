@@ -21,8 +21,9 @@ class Tools {
         }
     }
     public static function debug($string) {
+        $br = php_sapi_name() == "cli" ? "\n" : "<br>";
         $date = date(DATE_ATOM, mktime(0, 0, 0, 7, 1, 2000));
-        echo "[".date("Y-m-d H:i:s")."] ".$string."\n";
+        echo "[".date("Y-m-d H:i:s")."] ".$string.$br;
     }
     public static function log() {
 
