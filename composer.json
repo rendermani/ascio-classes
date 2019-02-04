@@ -47,6 +47,16 @@
         "post-update-cmd": "ascio\\lib\\composer\\Update::postUpdate",
         "post-package-install": [
             "ascio\\lib\\composer\\Update::postPackageInstall"
+        ],
+        "post-install-cmd": [
+            "ascio\\lib\\composer\\Update::postPackageInstall"
+           
+        ],
+        "post-autoload-dump": [
+            "ascio\\lib\\composer\\Update::postPackageInstall"
+        ],
+        "post-create-project-cmd": [
+            "ascio\\lib\\composer\\Update::postPackageInstall"
         ]
     }
 }
