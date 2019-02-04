@@ -17,8 +17,10 @@ class AscioEnvironment {
 class Ascio {
     public static function setConfigFile($filePath=null) {
         global $_ascioConfig; 
-        if(!$filePath) $filePath = __DIR__."/../../../../../config.json";
-        $file = file_get_contents($filePath); 
+        if($filePath==null) $filePath =  __DIR__."/../../../../../config.json";
+        $realPath = realpath($filePath);
+        assert ($realPath !== false, new \Exception($filePath. " not found!"));
+        $file = file_get_contents(realpath($filePath));         
         $_ascioConfig = json_decode($file);                
     }
     public static function getConfig() {
