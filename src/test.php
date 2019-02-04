@@ -25,6 +25,8 @@ use ascio\lib\v2\Domain;
 use ascio\lib\Actions;
 use ascio\lib\Tools;
 use ascio\lib\AscioException;
+use ascio\v2\OrderType;
+use ascio\v2\Registrant;
 
 class MyActions extends Actions {
     public static function Completed(Order $order)
@@ -39,21 +41,22 @@ class MyActions extends Actions {
     }
 }
 
+$path = "/Users/ml/ownCloud/Keys/ascio/ascio.json";
+Ascio::setConfigFile($path);
 
 Ascio::setEnvironment(AscioEnvironment::Testing);
-Ascio::setConfigFile(getenv()["HOMEPATH"]."/keys/ascio.json");
 
 try {
     $client = Ascio::getClientV2();
     $domain = new Domain();
     $domain->setDomainName("123anfrage.de");
-    $order = new Order(v2\OrderType::Unexpire_Domain);
+    $order = new Order(OrderType::Unexpire_Domain);
     $order->setActions("MyActions");
     $order->setDomain($domain);
     $order->create();
     $order->poll();
 
-    $order = new Order(v2\OrderType::Expire_Domain);
+    $order = new Order(OrderType::Expire_Domain);
     $order->setActions("MyActions");
     $order->setDomain($domain);
     $order->create();
@@ -61,7 +64,5 @@ try {
 
     $domain = $order->getDomain()->get();
 } catch (AscioException $e) {
-    echo $e->debug();
+    echo $e->debug();    
 }
-
-
