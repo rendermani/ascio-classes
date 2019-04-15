@@ -1,138 +1,188 @@
 <?php 
 namespace ascio\lib;
-class Db {
-    /**
-     * @var \PDO $connection Database connection;
-     */
-    protected $connection; 
-    protected $object;
-    protected $idKey;
-    protected $tableDef;
-    protected $keys ="";
-    public function __construct($object,$idKey)
-    {
-        $config = Ascio::getConfig()->db;
-        $dsn = $config->dsn;
-        $user = $config->user;
-        $password = $config->password;
-        $this->connection = new \PDO($dsn,$user,$password,[]);   
-        $this->object = $object;
-        $this->table = \str_replace("\\",get_class($object),"_"); 
-        $this->idKey = $idKey;    
-    }
-    public function setTableDef (array $tableDef) {
-        $this->tableDef = $tableDef;
-    }
-    public function setKeys (string $keys) {
-        $this->keys = $keys;
-    }
-    public function writeObject() {
-        $keys = [];
-        $values = [];
-        foreach(\get_class_methods($this->object) as $key => $method) {
-            if(\strpos($method,"get")===0)  {
-                $name = \preg_replace('/^(get)/','',$method);
-                $get = "get".$name;
-                $keys[] = $name;
-                $values[] = '"'.$get().'"';
-            }
-            $query = '
-                REPLACE INTO '.$this->table . 
-                '('.\implode(', ',$keys) . ' 
-                VALUES (' . \implode(', ',$values) .')';
-               
-            $statement = $this->connection->prepare($query);              
-            $result = $statement->execute();
-            if(!$result) {
-                $message = \implode(". ",$this->connection->errorInfo());
-                $exception = new DbException($this->connection->errorCode());
-                $exception->setQuery($query);
-                throw($exception);
-            }
-        }
-    }
-    /**
-     * @param string $id The primary ID- OrderId or Handle
-     * @param array $fields write these fields
-     */
-    public function update(string $id,array $fields) {
-        $keys = [];
-        $values = [];
-        foreach(\get_class_methods($this->object) as $key => $method) {
-            if(\strpos($method,"get")===0)  {
-                $name = \preg_replace('/^(get)/','',$method);
-                $get = "get".$name;
-                if(in_array($name,$fields)) {
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Capsule\Manager as Capsule;
+use ascio\lib\DbProperties;
 
-                }
-                $keys[] = $name;
-                $values[] = '"'.$get().'"';
+class Db extends Model {
+    /**
+     * Need this to create the table; 
+     * Object $object Ascio Object
+     */
+    private $object;
+    /**
+     * @var boolean $fullData is false when only a handle exists
+     */
+    public $fullData = true; 
+    private $oldHandle;
+    protected $linkedHandles = []; 
+    /**
+     * @var DbProperties $properties
+     */
+    protected $properties;
+    protected $dates = [
+        'CreDate',
+        'ExpDate'
+    ];
+    public function setObject($object) {
+        $this->object = $object;
+        $this->properties = $object->properties;
+    }
+    public function getObject() {
+        return $this->object;
+    }
+    public function saveObject(array $data = []) {
+        /**
+         * @var DbProperties $properties
+         */               
+        //if the structure starts with a handle throw an AscioException
+         if($this->fullData == false) {
+            throw new AscioException("Please provide a ".get_class($this->object)." with full data");
+        }
+        $properties = $this->object->properties;              
+        foreach($properties->getObjects() as $key => $object) {
+            //if a property is a handle, don't save
+            if($object->db->fullData==true) {
+                $object->db->saveObject();
+            }            
+        } 
+        // replace the temporary handles in the database, if real handles exist           
+        $this->updateHandle();
+        $filter = [$this->primaryKey =>   $this->setHandle()];         
+        // get objects with links to handles
+        $object = $properties->getWithHandles();        
+        try {
+            parent::updateOrCreate($filter,$object);            
+        }  catch (\PDOException $e) {             
+            // create the table and try again
+            if($e->getCode()=="42S02") {
+                $this->createTable();
+                parent::updateOrCreate($filter,$object);
+                
+            } else {
+                throw($e);
             }
-            $query = '
-                REPLACE INTO '.$this->table . 
-                '('.\implode(', ',$keys) . ' 
-                VALUES (' . \implode(', ',$values) .')
-                WHERE '.$this->idKey .' = "'.$id.'"';
-               
-            $statement = $this->connection->prepare($query);              
-            $result = $statement->execute();
-            if(!$result) {
-                $message = \implode(". ",$this->connection->errorInfo());
-                $exception = new DbException($this->connection->errorCode());
-                $exception->setQuery($query);
-                throw($exception);
+        }        
+    }
+    /**
+     * After an order is created temporary handles need to be updated-
+     * Replace the temporary handles in the database, if real handles exists
+     */
+    private function updateHandle() {        
+        if(
+            $this->getHandle() &&
+            $this->getOldHandle() &&
+            $this->getOldHandle() != $this->getHandle()) {
+           
+            $newExists = $this->where($this->getPrimaryKey(),$this->getHandle())->exists();
+            if($newExists) {
+                return $this->destroy($this->getOldHandle());
+            }            
+            $this->where($this->getPrimaryKey(),$this->getOldHandle())
+            ->update([$this->getPrimaryKey() => $this->getHandle()]);
+            foreach($this->properties->getObjects() as $key => $object) {
+                $object->db->updateHandle();
             }
         }
     }
-    public function readObject() {
-        $idkey = $this->idKey;
-        $query = 'SELECT * FROM '.$this->table. ' WHERE '.$this->idKey.' = "'.$this->object->$idkey.'"' ;
-        $statement = $this->connection->prepare($query);              
-        $result = $statement->execute();
-        if($result) {
-            $row = $statement->fetchObject();
-            foreach(\get_class_methods($this->object) as $key => $method) {
-                if(\strpos($method,"set")===0)  {
-                    $name = \preg_replace('/^(set)/','',$method);                    
-                    $this->object->$method($row->$name);
-                }
-            }
-        } else {
-            $message = \implode(". ",$this->connection->errorInfo());
-            $exception = new DbException($this->connection->errorCode());
-            $exception->setQuery($query);
-            throw($exception);
+    /**
+     * if object is in an order and no Handles exist. If no handle is provided an ID is generated.
+     * @return string the handle that was created 
+     */
+    private function setHandle ($id = null) : string {        
+        $id = $id ? $id : $this->getHandle();
+        $setter = "set".$this->object->db->primaryKey; 
+        if(!$id) {
+            $id = $this->getOldHandle() ? $this->getOldHandle() :  "_".uniqid() ;
         }
+        $this->object->$setter($id);
+        if(strpos($id,"_")===0) {
+            $this->oldHandle = $id;
+        }        
+        return $id;
+    }
+     /**
+     * Gets the right handle, DomainHandle or Handle.
+     * @return string the handle 
+     */
+    public function getHandle () {
+        $getter = "get".$this->object->db->primaryKey; 
+        $id = $this->object->$getter();
+        return $id;
+    }
+     /**
+     * Set Old Handle. If the data comes from the database, and there is a temperarory key, this is important.
+     * The filter must search for the old key, and replace it with the new one.      
+     * @return string the handle 
+     */
+    public function setOldHandle (string $oldHandle) {
+        $this->oldHandle = $oldHandle;
+    }
+    public function getOldHandle () {
+        return $this->oldHandle;
     }
     public function createTable() {
+        /**
+         * @var DbProperties $properties
+         */
+        $properties = $this->object->properties;    
         $query = "CREATE TABLE ". $this->table ."("; 
-        foreach(\get_class_methods($this->object) as $key => $method) {
-            if(\strpos($method,"get")===0)  {
-                $name = \preg_replace('/^(get)/','',$method);                    
-                $type = $this->tableDef[$name] ? $this->tableDef[$name] : "VARCHAR 100";
-                $query  = $name . $type. ",\n";
-            }
+        foreach($properties->all() as $key => $value) {             
+            $property = $properties->get($key);
+            $length = $property->length ? " (".$property->length.")" : "";
+            $type =  " ".$property->type . $length;
+            $query .= $key . $type. ",\n";
         }
-        $query .= "PRIMARY KEY (".$this->idKey.")\n".$this->keys.");";
-        $statement = $this->connection->prepare($query);
-        $result = $statement->execute();
-        if(!$result)  {
-            $message = \implode(". ",$this->connection->errorInfo());
-            $exception = new DbException($this->connection->errorCode());
-            $exception->setQuery($query);
-            throw($exception);
+        $query .= "updated_at DATE,\n";
+        $query .= "created_at DATE,\n";
+        $query .= "PRIMARY KEY (`".$this->primaryKey."`)\n)";
+        Capsule::statement($query);
+    }
+    public function getDb($handle=null) {
+        $handle = $handle ?  $handle : $this->getHandle();
+        $result = $this->where($this->getPrimaryKey(),$handle)->firstOrFail();
+        Tools::merge($result->getAttributes(),$this->object);                       
+        $this->setOldHandle($this->getHandle()); 
+        // get all linked handles
+        foreach ($this->linkedHandles as $var  => $class) {
+            $handle = $result->getAttributes()[$var];
+            if(!$handle) continue;
+            $object = new $class();
+            $object->db->setHandle($handle);
+            $object->db->getDb();
+            $this->object->{"set".$var}($object);
         }
+        return $this->object;
+        
     }
-    public function getConnection () : \PDO {
-        return $this->connection;
+    public function sync() : void {
+        $result = $this->where($this->getPrimaryKey(),$this->getHandle())->first();
+        if(isset($result)) {
+           Tools::mergeProperties($result->getAttributes(),$this->object);                       
+           $this->setOldHandle($this->getHandle()); 
+        } else {
+            throw new \Exception("Handle ".$this->getHandle()." not found");
+        }
+        foreach ($this->linkedHandles as $var  => $class) {
+            $handle = $this->object->{"get".$var}();
+            if(!$handle) continue;
+            $object = new $class();
+            $object->db->setHandle($handle);
+            $object->db->sync();
+            $this->object->{"set".$var}($object);
+        }
+        
     }
-
-}
-class DbException extends \Exception {
-    protected $query; 
-    protected $error; 
-    
-    public function setQuery($query) {
-        $this->query = $query; 
+    public function getPrimaryKey() {
+        return $this->primaryKey;
+    } 
+    public function getLinkedHandles() {
+        return $this->linkedHandles;
+    }   
+    public function scopeSame($query) {                
+        $object =  Tools::merge($this->getObject(),[]);
+        unset($object["Handle"]);
+        unset($object["CreDate"]);
+        return $query->where($object); 
     }
 }
