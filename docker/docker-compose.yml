@@ -15,4 +15,36 @@ services:
         image: ascio-php
         volumes:
             - ..:/code
-            - c:/path/to/ascio.json:/path/to/ascio.json
+            - c:/Users/ml/ownCloud/Keys/ascio:/Users/ml/ownCloud/Keys/ascio
+    cron: 
+        build:
+            context: . 
+            dockerfile: Dockerfile-cron
+        volumes:
+            - ..:/code
+            - c:/Users/ml/ownCloud/Keys/ascio:/Users/ml/ownCloud/Keys/ascio
+    mysql:
+        image: mysql:5.7
+        ports:
+        - 13307:3306
+        env_file:
+        - ../.env
+        environment:
+            MYSQL_HOST: ${MYSQL_HOST}
+            MYSQL_DATABASE: ${MYSQL_DATABASE}
+            MYSQL_USER: ${MYSQL_USER}
+            MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+            MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD} 
+    phpmyadmin:
+      image: phpmyadmin/phpmyadmin
+      container_name: phpmyadmin_ascio
+      environment:
+       - PMA_ARBITRARY=1
+       - PMA_HOST=${MYSQL_HOST}
+       - PMA_USER=${MYSQL_USER}
+       - PMA_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      restart: always
+      ports:
+       - 8001:80
+      volumes:
+       - /sessions                
