@@ -1,0 +1,2 @@
+* * * * *  php /code/polling.php >> /dev/stdout 2>&1
+* * * * *  echo "Hello world" >> /dev/stdout 2>&1
