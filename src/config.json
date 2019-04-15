@@ -48,5 +48,18 @@
             "password" : "",
             "wsdl" : "https://dnsservice.demo.ascio.com/2010/10/30/DnsService.wsdl"
         }
+    },
+    "dbProperties" : {
+        "ascio\\lib\\v2\\Domain" : {
+            "ExtServiceId" : {
+                "field" : "VARCHAR",
+                "length" : 200
+            },
+            "ExtOrderId" : {
+                "field" : "VARCHAR",
+                "length" : 200
+            }
+            
+        }        
     }
 }

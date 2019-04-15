@@ -139,20 +139,13 @@ class AscioServices extends \SoapClient
      * @param string $wsdl The wsdl file to use
      * @param array $options A array of config values
      */
-    public function __construct(array $options = array(), $wsdl = null)
-    {
-    
-  foreach (self::$classmap as $key => $value) {
-    if (!isset($options['classmap'][$key])) {
-      $options['classmap'][$key] = $value;
-    }
-  }
-      $options = array_merge(array (
-  'features' => 1,
-), $options);
-      if (!$wsdl) {
-        $wsdl = 'https://aws.ascio.com/2012/01/01/AscioService.wsdl';
+    public function __construct(array $options = array(), $wsdl = null) {    
+      foreach (self::$classmap as $key => $value) {
+        if (!isset($options['classmap'][$key])) {
+          $options['classmap'][$key] = $value;
+        }
       }
+      $options = array_merge(['features' => 1],$options);      
       parent::__construct($wsdl, $options);
     }
 

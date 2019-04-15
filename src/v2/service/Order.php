@@ -56,7 +56,7 @@ class Order
     protected $Documentation = null;
 
     /**
-     * @var Domain $Domain
+     * @var \ascio\lib\v2\Domain $Domain
      */
     protected $Domain = null;
 
@@ -259,9 +259,9 @@ class Order
     }
 
     /**
-     * @return Domain
+     * @return \ascio\lib\v2\Domain
      */
-    public function getDomain()
+    public function getDomain() : ?\ascio\lib\v2\Domain
     {
       return $this->Domain;
     }
