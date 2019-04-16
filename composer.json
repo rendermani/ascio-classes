@@ -13,14 +13,17 @@
         "php": ">=5.3.0",
         "ext-soap": "*", 
         "wsdl2phpgenerator/wsdl2phpgenerator" : "*",
-        "ext-pdo" : "*"
+        "ext-pdo" : "*",
+        "illuminate/database": ">=5.9@dev",
+        "phpunit/phpunit": "^8"
 
     },
     "require-dev": {
         "php": ">=5.3.0",
         "ext-soap": "*", 
         "wsdl2phpgenerator/wsdl2phpgenerator" : "*",
-        "ext-pdo" : "*"
+        "ext-pdo" : "*",
+        "phpunit/phpunit": "^8"
 
     },
     "autoload": {
@@ -28,9 +31,18 @@
             "ascio\\v3\\": "src/v3/service",
             "ascio\\v2\\": "src/v2/service",
             "ascio\\dns\\": "src/dns/service",
+            "ascio\\lib\\"  : "src/lib",
+            "ascio\\lib\\composer\\" : "src/lib",
             "ascio\\lib\\v2\\" : "src/lib/v2",
-            "ascio\\lib\\v3\\" : "src/lib/v3"
-            
+            "ascio\\lib\\v3\\" : "src/lib/v3",
+            "ascio\\model\\common\\" : "src/model",
+            "ascio\\model\\v3\\" : "src/model/v3",
+            "ascio\\model\\v2\\" : "src/model/v2",
+            "ascio\\base\\" : "src/lib/base",
+            "ascio\\base\\v2\\" : "src/lib/base/v2",
+            "ascio\\base\\v3\\" : "src/lib/base/v3",
+            "ascio\\workflows\\" : "src/lib",           
+            "ascio\\workflows\\custom\\" : "workflows"
         }
     },
     "autoload-dev": {
@@ -38,9 +50,15 @@
             "ascio\\v3\\": "src/v3/service",
             "ascio\\v2\\": "src/v2/service",
             "ascio\\dns\\": "src/dns/service",
-            "ascio\\lib\\" : "src/lib",
+            "ascio\\lib\\"  : "src/lib",
+            "ascio\\lib\\composer\\" : "src/lib",
             "ascio\\lib\\v2\\" : "src/lib/v2",
-            "ascio\\lib\\v3\\" : "src/lib/v3"
+            "ascio\\lib\\v3\\" : "src/lib/v3",
+            "ascio\\model\\common\\" : "src/model",
+            "ascio\\model\\v3\\" : "src/model/v3",
+            "ascio\\model\\v2\\" : "src/model/v2",
+            "ascio\\workflows\\" : "src/lib",           
+            "ascio\\workflows\\custom\\" : "workflows"
         }
     },
     "scripts": {
@@ -49,6 +67,7 @@
             "ascio\\lib\\composer\\Update::postPackageInstall"
         ],
         "post-install-cmd": [
+
             "ascio\\lib\\composer\\Update::postPackageInstall"
            
         ],
