@@ -105,7 +105,7 @@ class Message extends v2\Message {
      public function getProperties() : ?DbProperties {
         return $this->properties;
     }
-    private function createTable() {
+    public function createTable() {
         if(!Capsule::Schema()->hasTable('v2_Message')) {
             Capsule::Schema()->create('v2_Message',function(Blueprint $table) {
                 $table->increments('Id');

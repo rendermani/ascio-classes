@@ -105,7 +105,7 @@ class Extension extends v2\Extension {
      public function getProperties() : ?DbProperties {
         return $this->properties;
     }
-    private function createTable() {
+    public function createTable() {
         if(!Capsule::Schema()->hasTable('v2_Extension')) {
             Capsule::Schema()->create('v2_Extension',function(Blueprint $table) {
                 $table->increments('Id');
